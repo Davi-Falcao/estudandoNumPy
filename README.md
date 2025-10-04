@@ -22,4 +22,4 @@ O arquivo contém os conceitos iniciais dos seguintes tópicos:
 * Cálculos estatísticos e matemáticos (soma, média, desvio padrão, min/max).
 * Geração de números aleatórios.
 
-Em resumo, é um material de estudo para solidificar a base do **NumPy**.
+Em resumo, é um material de estudo sobre a biblioteca **NumPy**.
