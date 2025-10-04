@@ -130,3 +130,86 @@ rng = np.random.default_rng()  # cria um gerador de números aleatórios
 aleatorios = rng.integers(10, size=(3, 4))  # gera um array 3x4 com números aleatórios entre 0 e 5s
 print(aleatorios)
 print("----")
+
+
+#Mudar o tipo do array usando astype
+array_inteiros = np.array([1, 2, 3, 4, 5])
+print(array_inteiros.dtype)  # imprime o tipo dos elementos do array (int64, int32, etc)
+print("----")
+
+array_float = array_inteiros.astype(float)  # muda o tipo do array para float
+print(array_float.dtype)  # imprime o novo tipo dos elementos do array
+print("----")
+
+
+#Broadcasting com NumPy
+print("Broadcasting com NumPy")
+# O broadcasting é uma técnica que permite realizar operações entre arrays de diferentes formas
+
+# Exemplo 1: Somar um escalar a um array
+print("Exemplo 1: Somar um escalar a um array")
+array = np.array([[1, 2, 3], [4, 5, 6]])
+escalar = 10
+resultado = array + escalar  
+# o escalar é "broadcasted" para cada elemento do array, como se o escalar correspondesse a uma matriz de [[10, 10, 10], [10, 10, 10]]
+print(resultado)
+print("----")
+
+
+# Exemplo 2: Somar um vetor e uma matriz (shapes diferentes)
+print("Exemplo 2: Somar um vetor e uma matriz (shapes diferentes)")
+array1 = np.array([[1, 2, 3], [4, 5, 6]])
+#O vetor 1D é "broadcasted" para cada linha da matriz 2D, como se o vetor correspondesse a uma matriz de [[10, 20, 30], [10, 20, 30]]
+array2 = np.array([10, 20, 30])
+resultado = array1 + array2
+print(resultado)
+print("----")
+
+# Exemplo 3: Somar duas matrizes com shapes compatíveis
+print("Exemplo 3: Somar duas matrizes com shapes compatíveis")
+array1 = np.array([[1, 2, 3], [4, 5, 6]])
+array2 = np.array([[10], 
+                   [20]])
+
+#A matriz 2D é "broadcasted" para cada coluna da matriz 1D, como se a matriz correspondesse a uma matriz de [[10, 10, 10], 
+#                                                                                                            [20, 20, 20]]
+resultado = array1 + array2
+print(resultado)
+print("----")
+
+# Exemplo 4: Somar duas matrizes com shapes incompatíveis (gera erro)
+print("Exemplo 4: Somar duas matrizes com shapes incompativeis (gera erro)")
+array1 = np.array([[1, 2, 3], [4, 5, 6]])
+print(array1)
+print("----")
+array2 = np.array([[10, 20], 
+                   [30, 40]])
+print(array2)
+#Gera um erro porque as shapes (2, 3) e (2, 2) não são compatíveis para broadcasting
+try:
+    resultado = array1 + array2
+    print(resultado)
+except ValueError as e:
+    print(f'Erro: {e}')
+print("----")
+
+#Exemplo 5: Multiplicação de matrizes com broadcasting
+print("Exemplo 5: Multiplicacao de matrizes com broadcasting")
+array1 = np.array([[1, 2, 3], [4, 5, 6]])
+array2 = np.array([[10],
+                   [20]])
+resultado = array1 * array2  # cada elemento da matriz 1 é multiplicado pelo correspondente elemento da matriz 2
+print(resultado)
+print("----")
+
+#Podemos usar o np.newaxis para ajustar as shapes e permitir o broadcasting
+print("Podemos usar o np.newaxis para ajustar as shapes e permitir o broadcasting")
+matriz = np.array([[1, 2, 3], [4, 5, 6]])
+
+# ajusta a shape de vetor_convertido para (2, 1)
+vetor_convertido = np.array([10, 20])[:, np.newaxis] 
+
+resultado =  matriz + vetor_convertido
+
+print(resultado)
+print("----")
